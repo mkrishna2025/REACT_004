@@ -1,0 +1,28 @@
+Javascript - 5 to 8
+	Basics
+	Indepth - OOPS
+	ES6 standards
+	Typescript
+	
+React with HTML - 5 to 8
+
+Node - 1
+
+React with Node - 12 - Mini Project
+
+Basics
+	Variables
+	Functions
+	Object
+	Arrays
+	Class 
+	Scope
+	Inheritance
+	ES6
+	Passing function as arguments
+	Nested Functions
+	Prototype
+	const, static
+	
+	
+
