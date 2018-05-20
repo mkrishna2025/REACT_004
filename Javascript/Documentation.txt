@@ -193,3 +193,165 @@ Here return is used to stop executing further lines
 
 success cases => process(true)
 failure cases => process(false), process(undefined), process(null)
+
+// End - Day 1
+
+// Start - Day 2
+
+Object
+	It is a key value pair
+	key	- String - can access using . or []
+		  Number - can access using [] only
+	value - String
+			Number
+			Boolean
+			function
+			Object
+We can use _ symbol in key as string 
+	
+// Sample object having name, age, city as keys
+var neha = {
+	name: 'Neha',
+	age: 20,
+	city: 'Hyderabad'
+}
+
+// Accessing the values is done using keys
+neha.age
+neha['age']
+
+// Sample object having numbers as keys
+var obj = {
+	1: 'a',
+	2: 'b'
+}
+obj[1] => a
+obj.1 => throws exception
+
+_ symbol in key as string 
+var person = { 
+	first_name: 'Karthik' 
+}
+
+// Adding or Updating key value pair
+
+// if key doesnt exist, it will be added
+neha.college = 'CRM'
+
+// if key exists, value will be updated
+neha.age = 30
+neha['age'] = 30
+
+deleting keys
+delete neha.age
+delete neha['college']
+
+
+Real Use Cases
+1. Solving collision of methods from multiple libraries
+
+Assume we are including 2 libraries with in a project
+// In Angular js library
+function test() {
+	console.log('Angular')
+}
+
+// In React js library
+function test() {
+	console.log('React')
+}
+
+function will be overridden as same name exists
+so test() will return React
+
+To solve this, we can use Object
+var React = { 
+	test: function() {
+		console.log('React');
+	}
+}
+
+var Angular = { 
+	test: function() {
+		console.log('Angular');
+	}
+}
+
+// Sample Calculator Object
+var calculator = {
+	add: function(x, y) {
+		return x + y;
+	},
+	sub: function(x, y) {
+		x = x || 0;
+		y = y || 0;
+		return x - y;
+	}
+}
+calculator.add(1, 2) => 3
+calculator['add'](1, 2) => 3
+
+// Nested Object
+neha.address = {
+	line1: 'Kukatpally',
+	line2: '1/2/3'
+}
+To print Kukatpally to console
+console.log(neha.address.line1)
+console.log(neha.address['line1'])
+console.log(neha['address']['line1'])
+console.log(neha['address'].line1)
+
+// Sample 
+NIT.Calculator['Add'](1, 2, 3)
+
+// After analyzing
+var NIT = {
+	Calculator: {
+		Add: function(x, y, z) {
+			return x + y + z;
+		}
+	}
+}
+
+2. Object as an function argument
+	Advantages 
+		order of params can be anything
+		pass only the keys that are required
+		can set default values
+
+var printPerson = function (firstName, lastName, age){
+	console.log(firstName + ' ' + lastName + ' ' + age);
+}
+
+if I want to pass only lastName and age
+printPerson('', 'kumar', 20) => kumar 20
+
+var printPerson2 = function(input){
+	console.log(input.firstName + ' ' + input['lastName'] + '' + input.age);
+}
+if I want to pass only lastName and age
+printPerson({ age: 20, lastName: 'kumar'}) => kumar 20
+
+//Handling undefined for keys
+var printPerson3 = function(input){
+	input.firstName = input.firstName || '';
+	input.lastName = input.lastName || '';
+	input.age = input.age || '';
+	console.log(input.firstName + ' ' + input['lastName'] + '' + input.age);
+}
+printPerson3({ age: 20 }); => 20
+printPerson3({}) => prints empty
+printPerson3() => throws exception as empty object is not passed, follow below approach to handle it
+
+// Handling input even if we dont pass
+var printPerson4 = function(input){
+	input = input || {};
+	input.firstName = input.firstName || '';
+	input.lastName = input.lastName || '';
+	input.age = input.age || '';
+	console.log(input.firstName + ' ' + input['lastName'] + '' + input.age);
+}
+printPerson4(); => prints empty
+
+// End - Day 2
