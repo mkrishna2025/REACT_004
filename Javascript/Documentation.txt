@@ -354,4 +354,254 @@ var printPerson4 = function(input){
 }
 printPerson4(); => prints empty
 
+var printPerson5 = function(input){
+	input =  input || {};
+	input.firstName = input.firstName || 'Guest';
+	input.lastName = input.lastName || 'User';
+	input.age = input.age || '0';
+	console.log(input.firstName + ' ' + input['lastName'] + '' + input.age);
+}
+
+using Object as return type
+function getPerson2() {
+	return { name: 'Jhansi', age: 30 }
+}
+
+console.log(NIT.Admin.GetAccount('Keerthi')['FullName'].FirstName);
+
+var NIT = {
+	Admin: {
+		GetAccount: function(name){
+			//
+			//
+			//
+			
+			return {
+				FullName: {
+					FirstName: 'Jhansi'
+				}
+			}
+		}
+	}
+}
+
+console.log(NIT.Admin.GetAccount({ name:'Keerthi'} )['FullName'].FirstName);
+
 // End - Day 2
+
+// Start - Day 3
+
+// Arrays - Collection
+	- its a object where keys are numeric and starts with 0 key ie index.
+
+var students = [];
+
+// Array of Strings
+students = [ 'Karthik', 'Deepthi', 'Venkat', 'Rakesh' ];
+
+
+// Adding item to array
+students.push('Neha');
+
+// Removing item in array
+var item = students.pop();
+
+// Printing Array
+// Approach 1
+students[0] => "Karthik"
+students[1] => "Deepthi"
+students[2] => "Venkat"
+students[3] => undefined
+students[4] => undefined
+
+Exception is not occurred even though we are looking for item where index doesnt exist.
+
+// Approach 2
+using for 
+for(var index = 0; index < students.length; index++){
+	var student = students[index];
+	console.log(index);
+	console.log(student);
+}
+
+// Approach 3
+using for in -- Iteration is done with Index
+for(var index in students){
+	var student = students[index];
+	console.log(index);
+	console.log(student);
+}
+
+// Approach 4
+using for of 
+for(var student of students){
+	console.log(student);
+}
+
+// Array of Objects
+var persons = [
+	{ name: 'Karthik', age: 20, city: 'Hyderabad' },
+	{ name: 'Keerthi', age: 20, city: 'Hyderabad' },
+	{ name: 'Pankaj', age: 2, city: 'Delhi' },
+	{ name: 'Neha', age: 20, city: 'Hyderabad' },
+	{ name: 'Deepak', age: 23, city: 'Delhi' }
+];
+
+for(var person of persons) {
+	console.log(person.name + ' has age ' + person.age + ' is from ' + person.city);
+}
+
+// Array of numbers
+var numbers = [1, 2, 3, 4, 5];
+
+var sum = 0;
+for(var number of numbers) {
+	sum = sum + number;
+}
+console.log(sum);
+
+// Array of different types
+var array = [ 1, "Hello", true, undefined, null, function(x, y) { return x + y } ];
+
+// printing types
+for(var item of array){
+	console.log(typeof(item));
+}
+
+// triggering function from array item
+array[5](1, 2) => 3
+
+var person = {
+	firstName: 'Karthik',
+	lastName: 'Reddy'
+}
+
+// finding or printing the keys of object
+
+// Approach 1
+for(var key in person) {
+	console.log(key);
+}
+
+// Approach 2
+var keys = Object.keys(person);
+for(var key of keys) {
+	console.log(key);
+}
+
+neha.address = [ { line1: 'Kukatpally', line2: 'Hyd' }, { line2: 'Delhi'}];
+
+// To Print Kukatpally
+neha.address[0].line1
+neha.address[0]['line1']
+
+var prashanth = {
+	name: 'Prashanth',
+	age: 20
+	city: 'Hyderabad',
+	creditCard: '123'
+}
+
+var preethi = {
+	name: 'Preethi',
+	age: 20
+	city: 'Delhi',
+	creditCard: '456'
+}
+
+// Class
+	Data Hiding/Security
+	Code Redundancy
+	Inheritance
+	Constructor
+	
+// Approach 1 - Creating a class
+// Syntax
+
+function className(args) {
+	// private variables/methods
+	// global variables/methods
+	
+	return {
+		// public variables/methods
+	}
+}
+
+var className = function(args) {
+	// private variables/methods
+	// global variables/methods
+	
+	return {
+		// public variables/methods
+	}
+}
+
+var Student = function() {
+	return {
+		name: '',
+		age: 0,
+		city: ''
+	}
+}
+
+var prashanth = new Student();
+var neha = new Student();
+
+
+// constructor pattern => passing the values while initialization
+var Student2 = function(arg_name, arg_age, arg_city) {
+	return {
+		name: arg_name,
+		age: arg_age,
+		city: arg_city
+	}
+}
+var prashanth = new Student2('Prashanth', 20, 'Hyderabad');
+var preethi = new Student2('Preethi', 20, 'Delhi');
+
+// object as a constructor
+var Student3 = function(options) {
+	return {
+		name: options.name,
+		age: options.age,
+		city: options.city
+	}
+} 
+var prashanth = new Student3( { age: 20, city: 'Hyderabad', name: 'Prashanth' });
+var preethi = new Student3( { name: 'Preethi', age: 20, city: 'Delhi')};
+
+var Student4 = function(options) {
+	options = options || {};
+	options.name = options.name || 'Guest';
+	options.city = options.city || 'Hyderabad';
+	options.age = options.age || '';
+	
+	return {
+		name: options.name,
+		age: options.age,
+		city: options.city
+	}
+}
+var lakshman = { name: "Lakshman", age: 20};
+
+var str = JSON.stringify(lakshman);
+
+JSON.stringify => converts object to string. usually we send data to backend in string format. => Encoding
+
+
+var obj = JSON.parse(str);
+
+console.log(JSON.parse(str).age);
+
+JSON.parse => converts string to object. usually backend api returns string format. In order to access/print any values(age, name) => need to convert to object format => decoding
+
+var JSON = {
+	parse: function(input) {
+	
+	},
+	stringify: function(input) {
+	
+	}
+}
+
+// End - Day 3
