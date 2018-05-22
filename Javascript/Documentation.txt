@@ -605,3 +605,207 @@ var JSON = {
 }
 
 // End - Day 3
+
+// Start - Day 4
+
+field/property/variable
+method/function/api
+
+Naming Conventions
+
+Camel Case => starts with LowerCase letter and have HigherCase letter for every word. scientificCalcularor => ex: functions, objects
+
+Variable Case => starts with HigherCase letter and have HigherCase letter for every word. ScientificCalcularor => ex: class
+
+LowerCase => All letters will be in lower case => scientificcalcularor => ex: variables
+
+Higher Case => All letters will be in higher case => SCIENTIFICCALCULATOR => ex constants
+
+function vs class
+class => variable case
+		must return atleast one public function.
+		
+
+var Student = function(options) {
+	options = options || {};
+	options.firstName = options.firstName || '';
+	options.lastName = options.lastName || '';
+	
+	// fullName is private field
+	var fullName = options.firstName + ' ' + options.lastName;
+	
+	return {
+		getName: function(){
+			return fullName;
+		}
+	};
+}
+
+var satya = new Student( { firstName : 'Satya', lastName: 'Kumar' });
+satya.getName() => Satya Kumar
+
+function Calculator(){
+	// private function
+	var printToConsole = function(result) {
+		console.log('Result is ' + result );
+	}
+	return {
+		add: function(x, y) {
+			var z = x + y;
+			printToConsole(z);
+			return z;
+		},
+		sub: function(x, y) {
+			var z = x - y;
+			printToConsole(z);
+			return z;
+		}
+	}
+}
+
+// private functions and fields have to be consumed in any public functions else there is no use of creating them.
+
+c1.add(1, 2) => Result is 3
+
+// Any public variable/function can be overridden with in the instance but it will not affect other instances 
+
+var Welcome = function() {
+	return {
+    	hello: function() {
+			console.log('Welcome to demo');
+		}
+	}
+}
+var s1 = new Welcome();
+s1.hello(); => Welcome to demo
+
+var s2 = new Welcome();
+s2.hello(); => Welcome to demo
+
+// override hello
+s2.hello = function() { console.log( 'Welcome to Overided Demo ' ); }
+s2.hello(); => Welcome to Overided Demo
+// Other instances are not affected
+s1.hello(); => Welcome to demo
+
+var s3 = new Welcome();
+s3.hello(); => Welcome to demo
+
+var ScientificCalculator = function() {
+	
+	// global variable
+	pi = 3.14;
+	
+	// global function
+	getBrowser = function(){
+		console.log('Chrome');
+	}
+	
+	// private variable
+	var code = '123456';
+
+	// private function
+	var printToConsole = function(result) {
+		console.log('Result is ' + result );
+	}
+	return {
+		version: 1.0, // public variable
+		add: function(x, y) {
+			var z = x + y;
+			printToConsole(z);
+			return z;
+		},
+		sub: function(x, y) {
+			var z = x - y;
+			printToConsole(z);
+			return z;
+		},
+		area: function(x, y) {
+			console.log('Need to be Implemented');
+		}
+	}
+}
+
+var sci1 = new ScientificCalculator();
+
+// We must create at least one object in order to access global variable/function.
+
+pi => 3.14
+getBrowser() => Chrome
+
+
+// We can create a object variable and then return it
+var ScientificCalculator2 = function() {
+	
+	// global variable
+	pi = 3.14;
+	
+	// global function
+	getBrowser = function(){
+		console.log('Chrome');
+	}
+	
+	// private variable
+	var code = '123456';
+
+	// private function
+	var printToConsole = function(result) {
+		console.log('Result is ' + result );
+	}
+	
+	var my = {
+		version: 1.0, // public variable
+		add: function(x, y) {
+			var z = x + y;
+			printToConsole(z);
+			return z;
+		},
+		sub: function(x, y) {
+			var z = x - y;
+			printToConsole(z);
+			return z;
+		},
+		area: function(x, y) {
+			console.log('Need to be Implemented');
+		}
+	};
+	
+	return my;
+}
+
+// scope/context => scope refers the current instance/object
+
+var lavanya = {
+	name: 'Lavanya',
+	getName: function(){
+    	return lavanya.name;
+	}
+}
+
+// using scope/context
+var lavanya = {
+	name: 'Lavanya',
+	getName: function(){
+    	return this.name;
+	}
+}
+
+var component = {
+	name: 'Prakash',
+	feature: {
+    	name: 'Kumar',
+		getName: function() {
+			return this.name;
+        }
+	},
+	getName: function() {
+    	return this.name;
+	}
+}
+
+component.getName() => Prakash
+component.feature.getName() => Kumar
+
+-- End - Day 4
+
+// End - Day 3
