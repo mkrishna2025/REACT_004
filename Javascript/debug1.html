@@ -1,0 +1,28 @@
+<html>
+	<head>
+		<script>
+		debugger;
+		function Calculator(){
+			
+			// private function
+			var printToConsole = function(result) {
+				console.log('Result is ' + result );
+			}
+			this.add = function(x, y) {
+				var z = x + y;
+				printToConsole(z);
+				return z;
+			};
+			this.sub = function(x, y) {
+				var z = x - y;
+				printToConsole(z);
+				return z;
+			}
+		}
+		var c1 = new Calculator();
+		</script>
+	</head>
+	<body>
+		Welcome to Debugging.
+	</body>
+</html>

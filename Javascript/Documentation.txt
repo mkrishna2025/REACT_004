@@ -808,4 +808,178 @@ component.feature.getName() => Kumar
 
 -- End - Day 4
 
-// End - Day 3
+
+// Start - Day 5
+
+function test(){
+	console.log(this);
+}
+
+test() => prints browser window
+test.call({ a: 1, b: 2}) => {a: 1, b: 2}
+
+// Approach 2 - Creating a class
+// Syntax
+
+function className(args) {
+	// private variables/methods
+	// global variables/methods
+	
+	// public variables/methods
+	this.
+}
+
+var className = function(args) {
+	// private variables/methods
+	// global variables/methods
+	
+	// public variables/methods
+	this.
+}
+
+var Student = function() {
+	this.name = '';
+	this.age = 0;
+	this.city = '';
+}
+
+var prashanth = new Student();
+var neha = new Student();
+
+
+// constructor pattern => passing the values while initialization
+var Student2 = function(arg_name, arg_age, arg_city) {
+	this.name = arg_name;
+	this.age = arg_age;
+	this.city = arg_city;
+}
+var prashanth = new Student2('Prashanth', 20, 'Hyderabad');
+var preethi = new Student2('Preethi', 20, 'Delhi');
+
+// object as a constructor
+var Student3 = function(options) {
+	this.name = options.name;
+	this.age = options.age;
+	this.city = options.city;
+} 
+var prashanth = new Student3( { age: 20, city: 'Hyderabad', name: 'Prashanth' });
+var preethi = new Student3( { name: 'Preethi', age: 20, city: 'Delhi'});
+
+var Student4 = function(options) {
+	options = options || {};
+	options.name = options.name || 'Guest';
+	options.city = options.city || 'Hyderabad';
+	options.age = options.age || '';
+	
+	this.name = options.name;
+	this.age = options.age;
+	this.city = options.city;
+}
+
+
+function Calculator(){
+	// private function
+	var printToConsole = function(result) {
+		console.log('Result is ' + result );
+	}
+	this.add = function(x, y) {
+		var z = x + y;
+		printToConsole(z);
+		return z;
+	};
+	this.sub = function(x, y) {
+		var z = x - y;
+		printToConsole(z);
+		return z;
+	}
+}
+
+var ScientificCalculator = function() {
+	Calculator.call(this);
+	
+	// global variable
+	pi = 3.14;
+	
+	// global function
+	getBrowser = function(){
+		console.log('Chrome');
+	}
+	
+	// private variable
+	var code = '123456';
+	
+	this.version = 1.0;
+	
+	this.area = function(x, y) {
+		console.log('Need to be Implemented');
+	}
+}
+
+var Father = function(){
+	this.name = function(){
+		return "Prakash";
+	}
+	this.gender = function(){
+		return "M";
+	}
+	
+}
+
+var Son = function(){
+	Father.call(this);
+	this.name = function(){
+		return "Venkat";
+	}
+}
+
+var s1 = new Son();
+s1.name() => Venkat
+s1.gender() => M
+
+// Multiple Inheritance
+var Father = function(){
+	this.name = function(){
+		return "Prakash";
+	}
+	this.gender = function(){
+		return "M";
+	}
+	
+}
+var Mother = function(){
+	this.city = function(){
+		return "Hyderabad";
+	}
+}
+var Son = function(){
+	Father.call(this);
+	Mother.call(this);
+	this.name = function(){
+		return "Venkat";
+	}
+}
+var s3 = new Son();
+s3.city => "Hyderabad"
+
+// Prototype => Injecting Methods for existing classes
+
+var Calculator = function() {
+	this.add = function(x, y){
+		return x + y;    
+	}
+	this.sub = function(x, y){
+    	return x - y;
+	}
+}
+var c1 = new Calculator();
+
+Calculator.prototype.mul = function(x, y) {
+	return x * y;
+}
+var c2 = new Calculator();
+c2.mul(10, 20) => 200
+
+// Methods injected for instances before adding methods using prototype . ie it injects methods for older instances too.
+c1.mul(10, 2) => 20
+
+// End - Day 5

@@ -1,0 +1,48 @@
+<html>
+	<head>
+		<script>
+		debugger;
+		function Calculator(){
+			
+			// private function
+			var printToConsole = function(result) {
+				console.log('Result is ' + result );
+			}
+			this.add = function(x, y) {
+				var z = x + y;
+				printToConsole(z);
+				return z;
+			};
+			this.sub = function(x, y) {
+				var z = x - y;
+				printToConsole(z);
+				return z;
+			}
+		}
+		var ScientificCalculator = function() {
+			Calculator.call(this);
+			
+			// global variable
+			pi = 3.14;
+			
+			// global function
+			getBrowser = function(){
+				console.log('Chrome');
+			}
+			
+			// private variable
+			var code = '123456';
+			
+			this.version = 1.0;
+			
+			this.area = function(x, y) {
+				console.log('Need to be Implemented');
+			}
+		}
+		var s1 = new ScientificCalculator();
+		</script>
+	</head>
+	<body>
+		Welcome to Debugging.
+	</body>
+</html>
