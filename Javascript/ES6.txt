@@ -215,8 +215,139 @@ function print(result){
 }
 add(1, 2, print);
 
+var students = [
+	{ name: 'Bharath', age: 20, city: 'Hyderabad'},
+	{ name: 'Venkat', age: 25, city: 'Hyderabad'},
+	{ name: 'Kavya', age: 30, city: 'Hyderabad'},
+	{ name: 'Meetu', age: 21, city: 'Delhi'},
+	{ name: 'Prasad', age: 2, city: 'Delhi'}
+];
+
+function welcome(){
+	for(var student of students) {
+		console.log(' Welcome to ' + student.name + ', ' + student.age + ', ' + student.city);
+	}
+}
+
+function printDetails(){
+	for(var student of students) {
+		console.log( student.name + ' with age ' + student.age + ' is from ' + student.city);
+	}
+}
+
+function forEach(items, callback){
+	for(var item of items) {
+		callback(item);
+	}
+}
+
+// welcome
+forEach(students, function(student) {
+	console.log(' Welcome to ' + student.name + ', ' + student.age + ', ' + student.city);
+});
+
+// printDetails
+forEach(students, function(student) {
+	console.log( student.name + ' with age ' + student.age + ' is from ' + student.city);
+});
+
+Array.prototype.forEachItem = function(callback){
+	for(var item of this) {
+		callback(item);
+	}
+}
+
+// welcome
+students.forEachItem(function(student) {
+	console.log(' Welcome to ' + student.name + ', ' + student.age + ', ' + student.city);
+});
+
+// printDetails
+students.forEachItem(function(student) {
+	console.log( student.name + ' with age ' + student.age + ' is from ' + student.city);
+});
+
+filterStudentsByAge > 20
+function filterStudentsByAge(age) {
+	var filteredItems = [];
+	for(var student of students){
+		if(student.age > age) {
+			filteredItems.push(student);
+		}
+	}
+	return filteredItems;
+}
+
+function filterStudentsByCity(city) {
+	var filteredItems = [];
+	for(var student of students){
+		if(student.city == city) {
+			filteredItems.push(student);
+		}
+	}
+	return filteredItems;
+}
+
+function filterBy(callback){
+	var filteredItems = [];
+	for(var student of students){
+		if(callback(student)) {
+			filteredItems.push(student);
+		}
+	}
+	return filteredItems;
+}
+
+filterStudentsByAge > 20
+filterBy(function(student) {
+	return student.age > 20;
+});
+
+filterStudentsByCity
+filterBy(function(student) {
+	return student.city == 'Hyderabad';
+});
+
+Array.prototype.filterBy = function(callback) {
+	var filteredItems = [];
+	for(var item of this){
+		if(callback(item)) {
+			filteredItems.push(item);
+		}
+	}
+	return filteredItems;
+}
+filterStudentsByAge > 20
+students.filterBy(function(student) {
+	return student.age > 20;
+});
+
+filterStudentsByCity
+students.filterBy(function(student) {
+	return student.city == 'Hyderabad';
+});
+
+students.filter( function(student) { return student.city == 'Hyderabad'}).filter(function(student) { return student.age > 20 }).forEach(function(student) { console.log(student.name + ', ' + student.age + ', ' + student.city)});
+
+Arrow Functions
+var add = function(x, y) {
+	return x + y;
+}
+
+var add = (x, y) => {
+	return x + y;
+}
+
+var add = (x, y) => x + y;
+
+students
+	.filter(student => student.city == 'Hyderabad')
+	.filter(student => student.age > 20)
+	.forEach(student => console.log(student.name + ', ' + student.age + ', ' + student.city));
 
 
+var condition = student => student.city == 'Hyderabad' && student.age > 20;
+var print = student => console.log(student.name + ', ' + student.age + ', ' + student.city);
+students.filter(condition).forEach(print);
 
-
-
+https://www.w3schools.com/js/js_array_methods.asp
