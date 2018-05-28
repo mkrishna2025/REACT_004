@@ -1,0 +1,47 @@
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+	<div id="root">
+	</div>
+	<script type="text/babel">
+		//ReactDOM.render(React.createElement('div', { id: 'div1'}, 'Welcome to Demo'), document.getElementById('root'));
+		
+		//ReactDOM.render(<div>Welcome to Demo 2</div>, document.getElementById('root'));
+		
+		//var element = <div>Welcome to Demo 2</div>;
+		
+		function Welcome(props){
+			var address = props.address || {};
+			return <div> Welcome {props.user} {props.city} {address.line1}{address.line2}</div>;
+		}
+		
+		var TestComponent = function(props){
+			return <div>{props.title} </div>;
+		};
+		
+		var TestComponent2 = function(props){
+			var address = {
+				line1: 'Kukatpally',
+				line2: 'Hyderabad'
+			};
+			return <div>
+						<h1>{props.title}</h1>
+						<br/>
+						<br/>
+						<Welcome user="Neha Singh" city="Hyderabad"  />
+						<Welcome user="Prakash Kumar" city="Delhi" />
+						<Welcome user="Preethi Jain" address={address}/>
+					</div>;
+		};
+		
+		
+		/*ReactDOM.render(TestComponent({ title: 'Welcome to React Demo'}), document.getElementById('root'));*/
+		
+		ReactDOM.render(<TestComponent2 title="Welcome to Students"/>, document.getElementById('root'));
+	</script>
+</body>
+</html>
