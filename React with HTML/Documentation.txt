@@ -110,4 +110,52 @@ JSX => compiled
 Important Points
 	Use curly braces for variables with in jsx elements.
 	
-	
+Creating React Component => Create a ES6 class which extends React.Component and implement the render method.
+
+
+var students = [ 
+	{ fn: 'Karthik', ln: 'Kumar'}, 
+	{ fn: 'Venkat', ln: 'Reddy'},
+	{ fn: 'Keerthi', ln: 'Reddy'},
+	{ fn: 'Prakash', ln: 'Reddy'},
+	{ fn: 'Meetu', ln: 'Reddy'}
+
+]
+
+var students2 = students.map( student => 
+	{ 
+		return { fullName: student.fn + ' ' + student.ln } 
+	}
+);
+
+using styles
+.red {
+	color: 'red';
+	align-items: left;
+}
+
+in HTML
+<h1 style="color: 'red';align-items: left" />
+<h1 class='red' />
+
+
+in JSX
+<h1 style={{ color: 'red', alignItems: 'left' }} />
+<h1 class='red' />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,2 @@
+demo8 => using es6 classes in demo6.
+demo9 => populating courses from array using simple for loop, prototype api Map

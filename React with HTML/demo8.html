@@ -1,0 +1,37 @@
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+	<div id="root">
+	</div>
+	<script type="text/babel">
+		class Welcome extends React.Component {
+			render(){
+				var address = this.props.address || {};
+				return <div> Welcome {this.props.user} {this.props.city} {address.line1}{address.line2}</div>;
+			}
+		}
+		
+		class TestComponent extends React.Component {
+			render(){
+				var address = {
+					line1: 'Kukatpally',
+					line2: 'Hyderabad'
+				};
+				return <div>
+							<h1>{this.props.title}</h1>
+							<br/>
+							<br/>
+							<Welcome user="Neha Singh" city="Hyderabad"  />
+							<Welcome user="Prakash Kumar" city="Delhi" />
+							<Welcome user="Preethi Jain" address={address}/>
+						</div>;
+			}
+		}
+		ReactDOM.render(<TestComponent title="Welcome to Students"/>, document.getElementById('root'));
+	</script>
+</body>
+</html>

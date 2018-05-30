@@ -1,0 +1,146 @@
+<html>
+<head>
+<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+<style>
+	.yellowRow {
+		background-color: yellow;
+	}
+	.redRow {
+		background-color: red;
+	}
+</style>
+</head>
+<body>
+	<div id="root">
+	</div>
+	<script type="text/babel">
+		class TestComponent extends React.Component {
+			render(){
+				return <div> 
+							{this.props.title}
+							<br/>
+							<br/>
+							<table>
+								<thead>
+									<tr>
+										<td>Name</td>
+										<td>Age</td>
+										<td>City</td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Prakash</td>
+										<td>20</td>
+										<td>Hyderabad</td>
+									</tr>
+									<tr>
+										<td>Venkat</td>
+										<td>20</td>
+										<td>Delhi</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+			}
+		}
+		
+		// using map to populate data dynamically
+		class TestComponent2 extends React.Component {
+			render(){
+				var students = [
+					{ name: 'Prakash', age: 20, city: 'Hyderabad' },
+					{ name: 'Deepthi', age: 22, city: 'Hubli' },
+					{ name: 'Rajesh', age:25 , city: 'Hubli' },
+					{ name: 'Neha', age:41 , city: 'Hyderabad' },
+					{ name: 'Venkat', age:23 , city: 'Vizag' }
+				];
+				return <div> 
+							{this.props.title}
+							<br/>
+							<br/>
+							<table>
+								<thead>
+									<tr>
+										<td>Name</td>
+										<td>Age</td>
+										<td>City</td>
+									</tr>
+								</thead>
+								<tbody>
+									{students.map(student => <tr>
+										<td>{student.name}</td>
+										<td>{student.age}</td>
+										<td>{student.city}</td>
+									</tr>
+									)}
+								</tbody>
+							</table>
+						</div>
+			}
+		}
+		
+		class StudentInfo extends React.Component {
+			render() {
+				var student = this.props.item;
+				
+				/*if(student.age > 24) {
+					return <tr class="redRow">
+							<td>{this.props.item.name}</td>
+							<td>{student.age}</td>
+							<td>{student.city}</td>
+						</tr>;
+				} else {
+					return <tr class="yellowRow">
+							<td>{this.props.item.name}</td>
+							<td>{student.age}</td>
+							<td>{student.city}</td>
+						</tr>;
+				}*/
+				
+				var rowStyle = student.age > 24 ? 'redRow' : 'yellowRow';
+				return <tr class={rowStyle}>
+							<td>{this.props.item.name}</td>
+							<td>{student.age}</td>
+							<td>{student.city}</td>
+						</tr>;
+				
+			}
+		}
+		
+		class TestComponent3 extends React.Component {
+			render(){
+				var students = [
+					{ name: 'Prakash', age: 20, city: 'Hyderabad' },
+					{ name: 'Deepthi', age: 22, city: 'Hubli' },
+					{ name: 'Rajesh', age:25 , city: 'Hubli' },
+					{ name: 'Neha', age:41 , city: 'Hyderabad' },
+					{ name: 'Venkat', age:23 , city: 'Vizag' },
+					{ name: 'Keerthi', age:23 , city: 'Vizag' }
+				];
+				return <div> 
+							{this.props.title}
+							<br/>
+							<br/>
+							<table style={{ border: '1px solid', backgroundColor: 'blue' }}>
+								<thead>
+									<tr>
+										<td>Name</td>
+										<td>Age</td>
+										<td>City</td>
+									</tr>
+								</thead>
+								<tbody>
+									{students.map(student => <StudentInfo item={student}/>
+									)}
+								</tbody>
+							</table>
+						</div>
+			}
+		}
+		ReactDOM.render(<TestComponent3 title="Welcome to Students"/>, document.getElementById('root'));
+	</script>
+</body>
+</html>

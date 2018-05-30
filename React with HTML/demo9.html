@@ -1,0 +1,64 @@
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+	<div id="root">
+	</div>
+	<script type="text/babel">
+		class TestComponent extends React.Component {
+			render(){
+				return <div> 
+							{this.props.title} 
+							<ul>
+								<li>React</li>
+								<li>React Native</li>
+								<li>Express</li>
+								<li>JavaScript</li>
+								<li>Node</li>
+							</ul>
+						</div>
+			}
+		}
+		
+		// using for loop and array items.
+		class TestComponent2 extends React.Component {
+			render(){
+				var courses = ['React', 'React Native', 'Express', 'JavaScript', 'Node'];
+				
+				var liElements = [];
+				
+				for(var course of courses) {
+					liElements.push(<li>{course}</li>);
+				}
+				
+				
+				return <div> 
+							{this.props.title} 
+							<ul>
+								{liElements}
+							</ul>
+						</div>
+			}
+		}
+		
+		// using map prototype
+		class TestComponent3 extends React.Component {
+			render(){
+				var courses = ['React', 'React Native', 'Express', 'JavaScript', 'Node', 'Hydra'];
+				
+				return <div> 
+							{this.props.title} 
+							<ul>
+								{courses.map(course => <li>{course}</li>)}
+							</ul>
+						</div>
+			}
+		}
+	
+		ReactDOM.render(<TestComponent3 title="Welcome to Courses"/>, document.getElementById('root'));
+	</script>
+</body>
+</html>
