@@ -1,2 +1,5 @@
 demo8 => using es6 classes in demo6.
 demo9 => populating courses from array using simple for loop, prototype api Map
+demo10 => populating students table from array
+demo11 => using demo9, add refresh button to change array and screen refreshes automatically.
+demo12 => using demo10, apply filters on name, city

@@ -138,22 +138,62 @@ in HTML
 <h1 style="color: 'red';align-items: left" />
 <h1 class='red' />
 
+CDN Links
+https://reactjs.org/docs/cdn-links.html
 
 in JSX
 <h1 style={{ color: 'red', alignItems: 'left' }} />
 <h1 class='red' />
+Variables
+
+Block Level => var name;
+public => this.name
+Props that component receives => this.props.name => Not to update
+State Level => this.state.name
+
+var a = 1
+b = 2
+c = 3
+d = 4
+e = 5
+
+this.state = {
+	a: 1,
+	b: 2,
+	c: 3,
+	d: 4,
+	e: 5
+}
+
+// updating state variables d to 10 e to 20
+this.setState( { d: 10, e: 20 })
+
+As values are changed, screen will update
+
+// updating state variables d to 4 e to 5
+this.setState( { d: 4, e: 5 })
+As values are not changed, screen will not refresh
+
+but In both cases virtual DOM is recreated.
 
 
 
+Use of internal API filter
 
+var students = [ 
+	{ fn: 'Karthik', ln: 'Kumar'}, 
+	{ fn: 'Venkat', ln: 'Reddy'},
+	{ fn: 'Keerthi', ln: 'Reddy'},
+	{ fn: 'Prakash', ln: 'Reddy'},
+	{ fn: 'Meetu', ln: 'Reddy'}
 
-
-
-
-
-
-
-
+]
+students.filter( student => student.fn.indexOf('K') >= 0) 
+results in  
+[ 	{fn: "Venkat", ln: "Reddy"},
+	{fn: "Prakash", ln: "Reddy"},
+	{fn: "Meetu", ln: "Reddy"}
+]
 
 
 

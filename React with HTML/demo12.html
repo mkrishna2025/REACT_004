@@ -1,0 +1,136 @@
+<html>
+<head>
+<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+<style>
+	.yellowRow {
+		background-color: yellow;
+	}
+	.redRow {
+		background-color: red;
+	}
+</style>
+</head>
+<body>
+	<div id="root">
+	</div>
+	<script type="text/babel">
+		class StudentInfo extends React.Component {
+			render() {
+				var student = this.props.item;
+				var rowStyle = student.age > 24 ? 'redRow' : 'yellowRow';
+				return <tr class={rowStyle}>
+							<td>{this.props.item.name}</td>
+							<td>{student.age}</td>
+							<td>{student.city}</td>
+						</tr>;
+				
+			}
+		}
+		
+		const STUDENTS = [
+			{ name: 'Prakash', age: 20, city: 'Hyderabad' },
+			{ name: 'Pradeep', age: 20, city: 'Hyderabad' },
+			{ name: 'Deepthi', age: 22, city: 'Hubli' },
+			{ name: 'Rajesh', age:25 , city: 'Hubli' },
+			{ name: 'Neha', age:41 , city: 'Hyderabad' },
+			{ name: 'Venkat', age:23 , city: 'Vizag' },
+			{ name: 'Keerthi', age:23 , city: 'Vizag' }
+		];
+		
+		class TestComponent extends React.Component {
+		
+			constructor(props) {
+				super(props);
+				var students = 
+				this.state = {
+					students: STUDENTS,
+					studentsClone: STUDENTS
+				};
+			}
+			onSearchBoxChange(event){
+				console.log(event.target.value);
+				
+				var searchStr = event.target.value;
+				
+				var filteredStudents = [];
+				for(var student of this.state.students){
+					if(student.name.toLowerCase().indexOf(searchStr.toLowerCase()) >= 0 
+					|| student.city.toLowerCase().indexOf(searchStr.toLowerCase()) >= 0) {
+						filteredStudents.push(student);
+					}
+				}
+				
+				this.setState( { studentsClone: filteredStudents });
+			}
+			
+			render(){
+				return <div> 
+							{this.props.title}
+							<br/>
+							<br/>
+							<input type='text' placeholder="Search by Name Or City" onChange={this.onSearchBoxChange.bind(this)}/>
+							<br/>
+							<br/>
+							<table style={{ border: '1px solid', backgroundColor: 'blue' }}>
+								<thead>
+									<tr>
+										<td>Name</td>
+										<td>Age</td>
+										<td>City</td>
+									</tr>
+								</thead>
+								<tbody>
+									{this.state.studentsClone.map(student => <StudentInfo item={student}/>
+									)}
+								</tbody>
+							</table>
+						</div>
+			}
+		}
+		
+		// filtering using inline arrow function
+		class TestComponent2 extends React.Component {
+		
+			constructor(props) {
+				super(props);
+				var students = 
+				this.state = {
+					students: STUDENTS,
+					studentsClone: STUDENTS
+				};
+			}
+
+			render(){
+				return <div> 
+							{this.props.title}
+							<br/>
+							<br/>
+							<input type='text' placeholder="Search by Name Or City" onChange={ event => {
+								var searchStr = event.target.value;
+					this.setState( { studentsClone: this.state.students.filter( student => student.name.toLowerCase().indexOf(searchStr.toLowerCase()) >= 0 
+					|| student.city.toLowerCase().indexOf(searchStr.toLowerCase()) >= 0) });
+							}}/>
+							<br/>
+							<br/>
+							<table style={{ border: '1px solid', backgroundColor: 'blue' }}>
+								<thead>
+									<tr>
+										<td>Name</td>
+										<td>Age</td>
+										<td>City</td>
+									</tr>
+								</thead>
+								<tbody>
+									{this.state.studentsClone.map(student => <StudentInfo item={student}/>
+									)}
+								</tbody>
+							</table>
+						</div>
+			}
+		}
+		ReactDOM.render(<TestComponent2 title="Welcome to Students"/>, document.getElementById('root'));
+	</script>
+</body>
+</html>
