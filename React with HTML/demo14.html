@@ -1,0 +1,87 @@
+<html>
+<head>
+<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+<link rel="stylesheet" href="demo14.css" />
+
+</head>
+<body>
+	<div id="root">
+	</div>
+	<script type="text/babel">
+		class TestComponent extends React.Component {
+		
+			constructor(props){
+				super(props);
+				this.state = {
+					userName: '',
+					password: '',
+					errorUserName: '',
+					errorPassword: '',
+					errorMessages: []
+				}
+			}
+		
+			loginClick(event) {
+				
+				var errorUserName = '';
+				var errorPassword = '';
+				var errorMessages = [];
+				var isValid = true;
+				
+				if(this.state.userName == ''){
+					errorUserName = 'Please enter UserName';
+					isValid = false;
+					errorMessages.push(errorUserName);
+				}
+				
+				if(this.state.password == ''){
+					errorPassword = 'Please enter Password';
+					isValid = false;
+					errorMessages.push(errorPassword);
+				}
+				
+				this.setState({ 
+					errorUserName: errorUserName, 
+					errorPassword: errorPassword,
+					errorMessages: errorMessages
+				});
+				
+				if(isValid) {
+					alert(JSON.stringify({
+						username: this.state.userName,
+						password: this.state.password
+					}));
+				}
+				
+			}
+			
+			userNameChange(event){
+				this.state.userName = event.target.value;
+			}
+			
+			render(){
+				return <div> 
+							<h3>{this.props.title}</h3>
+							<div>
+							  <label>User Name</label>
+								<input type="text" id="username" name="username" placeholder="User Name.." onChange={this.userNameChange.bind(this)}/>
+								<span class="warning"> {this.state.errorUserName} </span>
+								<br/>
+								<label>Password</label>
+								<input type="text" id="password" name="password" placeholder="Password.." onChange={ event => this.state.password = event.target.value} />
+								<span class="warning"> {this.state.errorPassword} </span>
+								<br/>
+								<ul>
+									{this.state.errorMessages.map(message => <li class="warning"> {message}</li>)}
+								</ul>
+								<input type="button" value="Submit" onClick={this.loginClick.bind(this)}/>
+							</div>
+						</div>
+			}
+		}
+		ReactDOM.render(<TestComponent title="Welcome to Login..."/>, document.getElementById('root'));
+	</script>
+</body>
+</html>
