@@ -195,6 +195,222 @@ results in
 	{fn: "Meetu", ln: "Reddy"}
 ]
 
+this.props => attributes component receives
+this.props.children => innernodes component receives 
+		useful to create master pages
+		
+Master Page => Fixed template
+			We can have multiple master pages 
+
+defaultProps => default attributes for the component.
+
+
+// Cloning
+
+var person = {
+	fn: 'Karthik',
+	age: 20,
+	city: 'Hyderabad'
+}
+
+// Approach 1
+var p2 = {};
+for(var key in person) {
+	p2[key] = person[key];
+}
+
+// Approach 2
+var p3 = {...person}
+
+// adding some more attributes for the cloned item.. and overiding age
+//person.gender = 'm';
+//person.address = 'Kukatpally';
+
+var p4 = {...person, age: 22, gender: 'M', address: 'Kukatpally'}
+
+var overided = {age: 22, gender: 'M', address: 'Kukatpally'}
+var p5 = {...person, ...overided}
+
+// Merging Objects
+
+var obj1 = { a:1, b:2, c: 3}
+var obj2 = { c: 4, e: 5}
+var obj3 = { e: 6, f: 7, g: 8}
+
+var obj = { ...obj1, ...obj2, ...obj3 }
+
+obj will have all attributes ...
+
+var person = {
+	fn: 'Karthik',
+	age: 20,
+	city: 'Hyderabad',
+	address: 'Ameerpet',
+	creditNo: 123456
+}
+// Approach 1
+var p2 = {};
+for(var key in person) {
+	if(key != 'age' && key != 'creditNo'){
+		p2[key] = person[key];
+	}
+}
+
+var { age, creditNo, ...p3 } = {...person}
+
+var { age, creditNo, ...p4 } = {state:'Telangana', ...person}
+
+// age and creditNo values are copied to Age, CreditNumber and age, creditNo are undefined
+
+
+var { age: Age, creditNo: CreditNumber, ...p5 } = {state:'Telangana', ...person}
+
+var students = [ 'Neha', 'Prakash', 'Deepthi']
+
+// Applyging ... to Arrays
+var students2 = [...students, 'Navya', 'Venkat']
+
+
+JSX will automatically remove whitespace on the beginning and ending of a line as well as blank lines. 
+It also condenses blank lines in the middle of string literals into one space.
+
+
+	<Grid>Hello world!</Grid>
+
+	<Grid>
+	  Hello world!
+	</Grid>
+
+	<Grid>
+	  Hello
+	  world!
+	</Grid>
+
+	<Grid>
+
+	  Hello world!
+	</Grid>
+
+	
+Item => 7
+	props.children can be any type, 
+		an array
+		a function
+		an object
+		
+	<MasterPage>
+	  <h1>First</h1>
+	  <h1>Second</h1>
+	</MasterPage>
+	
+	
+	<MasterPage>
+	  {() => <h1>First</h1>}
+	</MasterPage>
+	
+	<MasterPage>
+	  {"Red"}
+	</MasterPage>
+
+Approach 1
+	{this.props.children}
+
+Approach 2
+	{React.Children.map(children, (child, i) => {
+	  return child;
+	})}
+
+Advantage:
+	{React.Children.map(children, (child, i) => {
+	  // Ignore the first child
+	  if (i < 1) return
+	  return child
+	})}
+
+Other API's
+
+API => React.Children.count
+React.Children.count(this.props.children) => renders number of elements passed.
+	
+	class ChildrenCounter extends React.Component {
+	  render() {
+		return <p>React.Children.count(this.props.children)</p>
+	  }
+	}
+	
+API => React.cloneElement
+	React elements are immutable(cant be updated).
+	var newElement = React.cloneElement(element, {
+	  country: 'India'
+	});
+	
+Other Samples - https://reactjs.org/docs/react-api.html
+
+
+<BrowserHistory>
+	<Login>
+	<Home>
+</BrowserHistory>
+
+class BrowserHistory {
+	constructor(props){
+		this.state = {
+			history: new HistoryObject()
+		}
+	}
+	render(){
+		return (
+			<div>
+				{
+					React.Children.map(this.props.children, child => {
+						return React.cloneElement(child, {
+						  history: this.state.history
+						})
+					})
+				}
+			</div>
+		);
+	}
+}
+
+class Login extends React.Component {
+	onLoginClick(){
+		this.props.history.push('/home');
+	}
+	render(){
+		return (
+			<div>
+				Welcome to Login
+				<input type="button" value="Login" onClick="onLoginClick" />
+			</div>
+		);
+	}
+}
+class Home extends React.Component {
+	render(){
+		return (
+			<div> Welcome to Home Screen</div>
+		);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
