@@ -1,0 +1,34 @@
+Node
+	Serverside JS framework
+	Earlier used => Batch processing
+	All modules connected like tree ... can be easily replaced, updated, deleted
+	Deployments => Mac, Windows, Linux
+	
+Node => Express => Rest API
+	 => HTTP/Webpack => Website(Server side rendering)
+	 
+npm => node package manager
+
+Retrieving versions
+node -v
+npm -version
+
+Creating a project
+1. create a project folder
+2. run command npm init
+3. create a file app or server.js and write the logic
+4. node fileName.js
+
+JS
+	function
+	Object
+	Class - private, public features
+	ES6
+	All Object Oriented Concepts
+
+Use of Node in React =>
+	Generation of common code(Boilerplate)
+	Generate a bundle (Compressed)
+
+	https://expressjs.com/
+	https://expressjs.com/en/starter/hello-world.html

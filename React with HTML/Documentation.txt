@@ -128,22 +128,10 @@ var students2 = students.map( student =>
 	}
 );
 
-using styles
-.red {
-	color: 'red';
-	align-items: left;
-}
-
-in HTML
-<h1 style="color: 'red';align-items: left" />
-<h1 class='red' />
 
 CDN Links
 https://reactjs.org/docs/cdn-links.html
 
-in JSX
-<h1 style={{ color: 'red', alignItems: 'left' }} />
-<h1 class='red' />
 Variables
 
 Block Level => var name;
