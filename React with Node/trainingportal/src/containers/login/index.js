@@ -46,6 +46,8 @@ export default class Login extends Component {
           username: this.state.userName,
           password: this.state.password
         }));
+
+        this.props.history.push('home');
       }
       
     }
