@@ -7,6 +7,9 @@ create-react-app => script to generate a project
 		
 npm install -g create-react-app
 
+// Generating Project
+create-react-app restaurantkit
+
 create-react-app internal process =>
 	create-react-app projectName
 
@@ -14,7 +17,7 @@ Older Approach =>
 	md projectName
 	cd projectName
 	npm init
-	generates files like index.html.. css... index.js and app.js
+	Write files like index.html.. css... index.js and app.js
 	npm install react
 	npm install react-dom
 	npm install react-scripts
