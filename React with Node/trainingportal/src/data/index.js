@@ -8,3 +8,5 @@ export const LOCATIONS = [
     { lat: 51.5658541, lng: -0.08640660000006028 },
     { lat: 51.4858541, lng: -0.08740660000006028 }
 ]
+
+export const SERVER = 'http://trainingkit.azurewebsites.net/api';

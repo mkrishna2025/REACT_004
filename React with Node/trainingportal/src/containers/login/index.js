@@ -17,7 +17,6 @@ export default class Login extends Component {
     }
 
     loginClick(event) {
-			debugger;
       var errorUserName = '';
       var errorPassword = '';
       var errorMessages = [];
@@ -47,7 +46,60 @@ export default class Login extends Component {
           password: this.state.password
         }));
 
-        this.props.history.push('home');
+        var formData = new FormData();
+        formData.append('username', this.state.userName);
+        formData.append('password', this.state.password);
+
+        fetch('http://trainingkit.azurewebsites.net/api/Users/CheckUserExists',{
+          method:'POST',
+          body: formData
+        }).then(response => {
+          if(response.status == 200){
+            return response.json();
+          } else {
+            alert('Login Failed');
+          }
+        })
+        .then(response => {
+          if(response.data){
+            this.props.history.push('home');
+          } else {
+            alert('Invalid Credentials');
+          }
+        })
+        .catch(error => {
+          alert(error);
+        });
+
+        /*apiPostCall({
+          url: 'Users/CheckUserExists',
+          params:[
+            { key: 'username', value: this.state.username },
+            { key: 'password', value: this.state.password }
+          ],
+          success: function(response){
+            debugger;
+            if(response.success && response.data){
+              alert('Logged in successfully');
+              //this.props.history.push('/home');
+              localStorage['username'] = this.state.userName;
+              Authentication.authenticate(() => {
+                this.props.history.push({
+                  pathname: '/home',
+                  params: {userName: this.state.userName}
+                });
+              });
+              
+            } else{
+              alert('Invalid Credentials');
+            }
+          },
+          failure: function(exception){
+            debugger;
+          }
+        }, this);*/
+
+        //
       }
       
     }

@@ -1,4 +1,6 @@
 
+import { SERVER } from '../data';
+
 export const isNullOrEmpty = (value) => {
     if(null == value || value.trim() == ''){
         return true;
@@ -59,3 +61,23 @@ export const validate2 = (options) => {
       isValid: isValid
     }
   }
+
+
+
+  export function apiPostCall(options, scope){
+    var formData = new FormData();
+    for(var param of options.params){
+        formData.append(param.key, param.value);
+    }
+    var url = SERVER + options.url;
+    fetch(url, {
+        method: 'POST',
+        body: formData
+    }).then(function(response) {
+         return response.json();
+    }).then(function(responseJSON) {
+        options.success.call(scope, responseJSON);
+    }).catch(function(exception){
+        options.failure(exception);
+    });
+}

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 export default (props) => {
-  debugger;
   return (<div> 
     <h3>{props.title}</h3>
     <div>

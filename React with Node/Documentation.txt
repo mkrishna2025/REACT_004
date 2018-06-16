@@ -126,3 +126,147 @@ https://reactjs.org/docs/add-react-to-an-existing-app.html
 
 Downloading Yarn
 https://yarnpkg.com/lang/en/docs/install/#windows-stable
+
+Main Project Structure
+	src
+		components - reusuable components
+		containers/pages - pages
+		data - static data
+		util - utilities
+		images - images
+	
+Stateless Component
+	dont use => this keyword
+				state keyword
+		
+Changes from stateful and stateless
+
+Stateful
+	export default class LoginView extends Component {
+		render(){
+			return ( <div> {this.props.title} </div>);
+		}
+	}
+	
+Stateless
+	export default (props) => {
+		return (<div>  {props.title} </div>);
+	}
+Points
+	dont use this keyword
+	
+Asynchronous process => Process which runs in parallel with main thread but independent of main thread.
+		
+Promise => to handle asynchronous process
+
+Promise returns 2 things => success, failure
+
+Ex: TakeHelp({ 
+				action: 'CollectMoney', 
+				amount: 1000
+			}).then(callback).catch(callback);
+	
+	TakeHelp({
+		action: 'CollectAndDepositMoney',
+		amount: 1000
+	}).then(callback).then(callback).catch(callback);
+	
+// simple get
+	fetch('test.com/getStudents')
+		.then(response => {})
+		.catch(error => {})
+
+// simple post
+	var user = { username: 'test@gmail.com', password: 123 }
+	fetch('test.com/adduser',{
+		method: 'POST',
+		data: user
+	}).then(cb1)
+	  .catch(cb2)
+	  
+Routing
+	BrowserRouter
+	HashRouter
+	
+history.push('home')
+
+// passing params => 
+Adv:
+	for security purposes, we can use this as params are not shown in query string
+Dis:
+	Refresh will not work
+	
+history.push({
+	pathname: 'home',
+	params: { username: 'Karthik', age: 20 }
+});
+
+var params = this.props.location.params;
+console.log(params.username + ', with age ' + params.age);
+
+
+// passing as search params => ie in query string
+Adv:
+	supports refresh feature
+
+https://github.com/mkrishna2025/Routing
+history.push({
+	pathname: 'home',
+	search: 'username=Karthik&age=20',
+});
+const queryParams = new URLSearchParams(this.props.location.search);
+console.log(queryParams.get('username') + ', with age ' + queryParams.get('age'));
+
+<a href='google.com?username=karthik'>Google</a>
+
+<Link to={{
+          pathname: '/google.com',
+          search: username=karthik,
+          params: { secretAccessKey: '123456' }
+        }}> Google </Link>
+
+
+Life Cycle
+	constructor => Default or Initial State
+	componentWillMount 
+	render => drawing the screen, adding items to the screen
+	componentDidMount => backend calls to load data in tables
+	componentWillUnMount
+	
+class RestaurantDemo {
+	constructor(props){
+		super(props);
+		this.state = {
+			restaurants: []
+		}
+	}
+	
+	componentDidMount(){
+		fetch('test.com/loadRestaurants')
+			.then(response => return response.json())
+			.then(response => {
+				var items = response.data;
+				this.setState({ restaurants: items });
+			}
+	}
+	
+	render(){
+		<div>
+		{this.state.restaurants.map(.... ) }
+		</div>
+	}
+}
+
+facebook
+	default - list
+	settings = 
+
+Pending
+
+
+	Authentication - Local, Google
+	
+	Redux Introduction 
+		
+		
+		
