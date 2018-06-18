@@ -257,6 +257,64 @@ class RestaurantDemo {
 	}
 }
 
+
+page 1 => username
+page 2
+page 3 =>
+
+
+Cache/Storage => can be stored as key value pairs	
+	SessionStorage => values cleared once browser is closed
+	LocalStorage => Manually need to be cleared
+	Adding
+		localStorage.setItem('userName', 'Prakash')
+		sessionStorage.setItem('userName', 'Divya')
+	Retrieving 
+		localStorage.getItem('userName')
+		sessionStorage.getItem('userName')
+	Removing
+		localStorage.removeItem('userName')
+		sessionStorage.removeItem('userName')
+	
+	Values can never be object
+	-- Adding Object
+	var user = { fn: 'Prakash', ln: 'Kumar'};
+	sessionStorage.setItem('user1', JSON.stringify(user));
+	JSON.parse(sessionStorage.getItem('user1'));
+
+Code formatting in Visual Studio => shift + alt + f	
+https://stackoverflow.com/questions/29973357/how-do-you-format-code-in-visual-studio-code-vscode
+
+Advantages
+https://developer.telerik.com/featured/10-awesome-features-of-visual-studio-code/
+
+Debugging in Visual Studio code
+https://code.visualstudio.com/docs/nodejs/reactjs-tutorial
+https://www.youtube.com/watch?v=DSxQUlfkISk
+
+Sample settings to copy in launch.json
+ {
+	"type": "chrome",
+	"request": "launch",
+	"name": "Launch Chrome against localhost",
+	"url": "http://localhost:3000",
+	"webRoot": "${workspaceFolder}"
+}
+
+3rd party Admin Panels
+
+Free
+https://coreui.io/react/
+
+Paid
+https://wrapbootstrap.com/theme/smartadmin-responsive-webapp-WB0573SK0
+
+Material Design
+http://preview.themeforest.net/item/material-design-reactjs-admin-web-app-with-bootstrap-4/full_screen_preview/19582625?ref=cirvitis&clickthrough_id=1305112757&redirect_back=true
+
+Others
+https://www.themexpert.com/blog/reactjs-admin-template
+
 facebook
 	default - list
 	settings = 
@@ -268,5 +326,4 @@ Pending
 	
 	Redux Introduction 
 		
-		
-		
+	

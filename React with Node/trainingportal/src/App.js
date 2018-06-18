@@ -6,6 +6,7 @@ import ContactUs from './containers/contactus';
 import UnImplemented from './containers/unimplemented';
 import Maps from './containers/maps';
 import AppBar from './containers/appbar';
+import CookieDemo from './containers/cookiesdemo';
 import { Route, Switch } from 'react-router-dom';
 
 class App extends Component {
@@ -17,6 +18,7 @@ class App extends Component {
         <Route path="/contactus" component={ContactUs} />
         <Route path="/maps" component={Maps} />
         <Route path="/appbar" component={AppBar} />
+        <Route path="/cookies" component={CookieDemo} />
         <Route path="*" component={UnImplemented} />
       </Switch>
     );
