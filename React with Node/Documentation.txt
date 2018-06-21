@@ -325,5 +325,67 @@ Pending
 	Authentication - Local, Google
 	
 	Redux Introduction 
-		
 	
+https://github.com/mkrishna2025/Redux
+
+
+React Redux		
+1.Provider to be added as parent to all components passing the store to it
+	<Provider store={store}>
+		<App />
+	</Provider>
+	
+2. In order to support redux for our component, we must add connect
+	export default connect(mapStateToProps, mapDispatcherToProps)(Component)
+	
+3. mapStateToProps => Maps state to props
+
+4. mapDispatchToProps => Maps dispatcher to props 
+
+function connect(mapStateToProps, mapDispatcherToProps) {
+	return function(Component){
+		var props = mapStateToProps.call();
+		React.CloneElement(Component, props);
+	}
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    addRecord: item => dispatch({ type: 'Add', record: item })
+	listUsers: () => dispatch( { type: 'List' })
+  };
+};
+
+var { addRow, listRows } from './actions';
+const mapDispatchToProps = dispatch => {
+  return {
+    addRecord: item => dispatch(addRow)
+	listUsers: () => dispatch(listRows)
+  };
+};
+
+When ever we trigger the action using dispatch, reducer will be executed. If there is change in state, mapStateToProps of that page will be triggered.
+
+BoilerPlate
+https://github.com/buckyroberts/React-Redux-Boilerplate
+https://github.com/kiki-le-singe/react-redux-universal-boilerplate
+
+https://github.com/justinhandley/redux-react-firebase-starter
+https://github.com/medihack/redux-pouchdb-plus
+
+Authentication
+	https://manage.auth0.com/#
+	
+<Route path="/home" component={Home} />
+
+<Route path="/home" render=(props) => <Home {...props} /> />
+
+<Route path="/home" render=(props) => <MasterPage><Home {...props} /></MasterPage> />
+
+Complete list of modules 
+https://react.parts
